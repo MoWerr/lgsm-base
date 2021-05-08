@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 source /common.sh
 
-## Chekf if main directory for vhserver exists
+## Chekf if main server directory exists
 check_dir $SERVERDIR
 chown husky:husky $SERVERDIR
 
@@ -16,7 +16,7 @@ if [[ ! -f ./linuxgsm.sh ]]; then
 fi
 
 ## Create server instance
-if [[ ! -f ./vhserver ]]; then
+if [[ ! -f ./$GAME ]]; then
     msg "Server instance not found, creating one..."
     s6-setuidgid husky ./linuxgsm.sh $GAME
 
