@@ -1,4 +1,6 @@
+import jetbrains.buildServer.configs.kotlin.v10.toExtId
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.dockerCommand
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 
 /*
@@ -68,4 +70,4 @@ open class BuildDockerImage(projectName: String, buildName: String, vcsRoot: Vcs
     }
 })
 
-object BuildStable : BuildDockerImage("Root", "Build", DslContext.settingsRoot, "mowerr/lgsm-base:latest")
+object BuildStable : BuildDockerImage("lgsm-base", "Build", DslContext.settingsRoot, "mowerr/lgsm-base:latest")

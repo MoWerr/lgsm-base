@@ -1,0 +1,3 @@
+# Ignore all IntelliJ files
+.idea
+LgsmBase_dsl.iml
