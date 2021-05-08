@@ -1,5 +1,4 @@
 */30 * * * * /data/server/${game} update >> /data/cronjobs.log 2>&1
 30 4 * * * /data/server/${game} force-update >> /data/cronjobs.log 2>&1
 0 0 * * 0 /data/server/${game} update-lgsm >> /data/cronjobs.log 2>&1
-* * * * * /data/server/${game} monitor >> /data/cronjobs.log 2>&1
 # This line makes a valid cron
