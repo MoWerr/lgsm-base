@@ -27,18 +27,45 @@ version = "2020.2"
 
 project {
 
-    buildType(Build)
+    buildType(BuildStable)
 }
 
-object Build : BuildType({
-    name = "Build"
+open class BuildDockerImage(projectName: String, buildName: String, vcsRoot: VcsRoot, dockerPath: String) : BuildType({
+    val id: String = "${projectName}_${buildName}";
+    id (id.toExtId())
+
+    name = buildName
 
     vcs {
-        root(DslContext.settingsRoot)
+        this.root(vcsRoot)
+    }
+
+    steps {
+        dockerCommand {
+            name = "Build image"
+            commandType = build {
+                source = file {
+                    path = "Dockerfile"
+                }
+                namesAndTags = dockerPath
+                commandArgs = "--pull"
+            }
+            param("dockerImage.platform", "linux")
+        }
+
+        dockerCommand {
+            name = "Push image"
+            commandType = push {
+                namesAndTags = dockerPath
+            }
+        }
     }
 
     triggers {
         vcs {
+            branchFilter = "+:<default>"
         }
     }
 })
+
+object BuildStable : BuildDockerImage("Root", "Build", DslContext.settingsRoot, "mowerr/lgsm-base:latest")
