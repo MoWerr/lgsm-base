@@ -7,7 +7,7 @@ ENV GAME=""
 RUN set -x && \
     dpkg --add-architecture i386 && \
     apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \ 
+    DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \
         cron \
         iproute2 \
         file \
@@ -23,6 +23,7 @@ RUN set -x && \
         lib32gcc1 \
         lib32stdc++6 \
         libsdl2-2.0-0:i386 \
+        xz-utils \
     && \
     # Cleanup
     apt-get clean autoclean && \
